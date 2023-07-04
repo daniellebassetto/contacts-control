@@ -1,26 +1,28 @@
-﻿<div class="text-center">
-    <h1 class="display-4">Cadastrar Contatos</h1>
+﻿@{
+    ViewData["Title"] = "Criar Contato";
+}
 
+<div>
+    <div class="text-center">
+        <h1 class="display-4">Cadastrar Contato</h1>
+    </div>
 
+    <form>
+        <div class="form-group mb-3">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" placeholder="Digite o nome do contato">
+        </div>
+        <div class="form-group mb-3">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" placeholder="Digite o e-mail">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="phone">Telefone</label>
+            <input type="tel" class="form-control" placeholder="Digite o telefone">
+        </div>
+
+        <button type="submit" class="btn btn-primary d-block w-100 mb-3">Adicionar</button>
+        <a class="btn btn-secondary d-block w-100 mb-3" role="button" asp-controller="Contact" asp-action="Index">Voltar</a>
+    </form>
 </div>
-
-<form>
-    <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" class="form-control" placeholder="Digite o nome do contato">
-    </div>
-    <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" class="form-control" placeholder="Digite o e-mail">
-    </div>
-
-    <div class="form-group">
-        <label for="phone">Telefone</label>
-        <input type="tel" class="form-control" placeholder="Digite o telefone">
-    </div>
-
-    <br/>
-    <button type="submit" class="btn btn-primary d-block">Adicionar</button>
-    <br/>
-    <a class="btn btn-secondary d-block" role="button" asp-controller="Contact" asp-action="Index">Voltar</a>
-</form>
