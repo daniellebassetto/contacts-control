@@ -19,6 +19,11 @@ namespace ContactsControl.Controllers
             return View();
         }
 
+        public IActionResult DeleteConfimation()
+        {
+            return View();
+        }
+        
         public IActionResult Delete()
         {
             return View();
