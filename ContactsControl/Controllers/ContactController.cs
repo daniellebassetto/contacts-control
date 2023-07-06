@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ContactsControl.Models;
+using ContactsControl.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsControl.Controllers
 {
     public class ContactController : Controller
     {
+        private readonly IContactRepository _contactRepository;
+        public ContactController(IContactRepository contactRepository)
+        {
+            _contactRepository = contactRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            List<ContactModel> contatos = _contactRepository.GetAll();
+            return View(contatos);
         }
         
         public IActionResult Create()
@@ -27,6 +36,13 @@ namespace ContactsControl.Controllers
         public IActionResult Delete()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(ContactModel contact)
+        {
+            _contactRepository.Create(contact);
+            return RedirectToAction("Index");
         }
     }
 }

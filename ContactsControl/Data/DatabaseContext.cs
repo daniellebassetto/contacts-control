@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ContactsControl.Data
 {
-    public class DatabaseContext : DbContext
+    public class DataBaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
         }
 
