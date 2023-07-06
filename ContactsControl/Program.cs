@@ -11,9 +11,11 @@ builder.Services.AddControllersWithViews();
 builder.Configuration.AddJsonFile("appsettings.json");
 
 // Configure the database context
+#region Configure Interface and Repository
 builder.Services.AddDbContext<DataBaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
+#endregion
 
 var app = builder.Build();
 

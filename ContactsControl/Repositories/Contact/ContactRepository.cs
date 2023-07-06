@@ -1,6 +1,5 @@
 ﻿using ContactsControl.Data;
 using ContactsControl.Models;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ContactsControl.Repositories
 {
@@ -20,13 +19,44 @@ namespace ContactsControl.Repositories
             return contact;
         }
 
+        public bool Delete(int id)
+        {
+            ContactModel deleteContact = Get(id);
+
+            if (deleteContact == null)
+                throw new Exception("Contato inválido ou inexistente");
+
+            _dataBaseContext.Remove(deleteContact);
+            _dataBaseContext.SaveChanges();
+
+            return true;
+        }
+
+        public ContactModel Get(int id)
+        {
+            return _dataBaseContext.Contact.FirstOrDefault(x => x.Id == id);
+        }
+
         public List<ContactModel> GetAll()
         {
             return _dataBaseContext.Contact.ToList();
         }
 
-        
+        public ContactModel Update(ContactModel contact)
+        {
+            ContactModel updateContact = Get(contact.Id);
 
-        
+            if (updateContact == null)
+                throw new Exception("Contato inválido ou inexistente");
+
+            updateContact.Id = contact.Id;
+            updateContact.Name = contact.Name; 
+            updateContact.Email = contact.Email;
+            updateContact.Phone = contact.Phone;
+
+            _dataBaseContext.Update(updateContact);
+            _dataBaseContext.SaveChanges();
+            return updateContact;
+        }
     }
 }
