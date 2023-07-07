@@ -10,15 +10,15 @@
 
     <form asp-controller="Contact" asp-action="Create" method="post">
         <div class="form-group mb-3">
-            <label for="name">Nome</label>
+            <label for="name">Nome</label> @Html.ValidationMessageFor(x => x.Name)
             <input type="text" asp-for="Name" class="form-control" placeholder="Digite o nome do contato">
         </div>
         <div class="form-group mb-3">
-            <label for="email">E-mail</label>
+            <label for="email">E-mail</label> @Html.ValidationMessageFor(x => x.Email)
             <input type="email" asp-for="Email" class="form-control" placeholder="Digite o e-mail">
         </div>
         <div class="form-group mb-3">
-            <label for="phone">Telefone</label>
+            <label for="phone">Telefone</label> @Html.ValidationMessageFor(x => x.Phone)
             <input type="tel" asp-for="Phone" class="form-control" placeholder="Digite o telefone">
         </div>
 

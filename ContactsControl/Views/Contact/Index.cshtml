@@ -5,14 +5,30 @@
 
 <body>
     <div class="text-center">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-1">
             <a class="btn btn-primary" role="button" asp-controller="Contact" asp-action="Create">Adicionar novo contato</a>
         </div>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["ErrorMessage"]
+            </div>
+        }
 
         <br />
         <h1 class="display-4">Listagem de Contatos</h1>
 
-        <table class="table">
+        <table class="table" id="contact-table">
             <thead>
                 <tr>
                     <th scope="col">#</th>

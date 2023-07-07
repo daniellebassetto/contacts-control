@@ -37,22 +37,70 @@ namespace ContactsControl.Controllers
         
         public IActionResult Delete(int id)
         {
-            _contactRepository.Delete(id);
-            return RedirectToAction("Index");
+
+            try
+            {
+                bool excluded = _contactRepository.Delete(id);
+
+                if (excluded)
+                {
+                    TempData["SuccessMessage"] = "Contato excluído com sucesso";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = $"Erro: não foi possível apagar este contato";
+                }
+                
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+            
         }
 
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
-            _contactRepository.Create(contact);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Create(contact);
+                    TempData["SuccessMessage"] = "Contato cadastrado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contact);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         public IActionResult Update(ContactModel contact)
         {
-            _contactRepository.Update(contact);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Update(contact);
+                    TempData["SuccessMessage"] = "Contato alterado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contact);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
