@@ -1,4 +1,5 @@
-﻿using ContactsControl.Models;
+﻿using ContactsControl.Map;
+using ContactsControl.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactsControl.Data
@@ -10,5 +11,11 @@ namespace ContactsControl.Data
         }
 
         public DbSet<ContactModel> Contact { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ContactMap());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

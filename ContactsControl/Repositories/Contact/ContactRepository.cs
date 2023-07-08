@@ -19,7 +19,7 @@ namespace ContactsControl.Repositories
             return contact;
         }
 
-        public bool Delete(int id)
+        public bool Delete(long id)
         {
             ContactModel deleteContact = Get(id);
 
@@ -32,7 +32,7 @@ namespace ContactsControl.Repositories
             return true;
         }
 
-        public ContactModel Get(int id)
+        public ContactModel Get(long id)
         {
             return _dataBaseContext.Contact.FirstOrDefault(x => x.Id == id);
         }
