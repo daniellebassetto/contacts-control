@@ -1,0 +1,73 @@
+﻿@model List<UserModel>
+@{
+    ViewData["Title"] = "Listagem de Usuários";
+}
+
+<body>
+    <div class="text-center">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-1">
+            <a class="btn btn-primary" role="button" asp-controller="User" asp-action="Create">Adicionar novo usuário</a>
+        </div>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <br />
+        <h1 class="display-4">Listagem de Usuários</h1>
+
+        <table class="table" id="user-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">Tipo de Usuário</th>
+                    <th scope="col">E-mail</th>                                        
+                    <th scope="col">Data de cadastro</th>
+                    <th scope="col">Data de alteração</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (UserModel user in Model)
+                    {
+                        <tr>
+                            <th scope="row">@user.Id</th>
+                            <td>@user.Name</td>
+                            <td>@user.Login</td>
+                            <td>@user.Profile</td>
+                            <td>@user.Email</td>
+                            <td>@user.RegistrationDate</td>
+                            <td>@(user.ChangeDate != null ? user.ChangeDate.ToString() : "N/A")</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a role="button" class="btn btn-primary" asp-route-id="@user.Id" asp-controller="User" asp-action="Update">Editar</a>
+                                    <a role="button" class="btn btn-danger" asp-route-id="@user.Id" asp-controller="User" asp-action="DeleteConfimation">Excluir</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="odd"><td valign="top" colspan="7">Nenhum usuário encontrado</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

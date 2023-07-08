@@ -49,7 +49,6 @@ namespace ContactsControl.Repositories
             if (updateContact == null)
                 throw new Exception("Contato inválido ou inexistente");
 
-            updateContact.Id = contact.Id;
             updateContact.Name = contact.Name; 
             updateContact.Email = contact.Email;
             updateContact.Phone = contact.Phone;

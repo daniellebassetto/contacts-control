@@ -11,10 +11,12 @@ namespace ContactsControl.Data
         }
 
         public DbSet<ContactModel> Contact { get; set; }
+        public DbSet<UserModel> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ContactMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
             base.OnModelCreating(modelBuilder);
         }
     }

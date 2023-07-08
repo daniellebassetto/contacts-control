@@ -1,8 +1,8 @@
 ﻿namespace ContactsControl.Enums
 {
-    public enum TypeProfile
+    public enum TypeUser
     {
-        Admin,
-        Default
+        Admin = 1,
+        Default = 2
     }
 }
