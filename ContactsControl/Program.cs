@@ -24,7 +24,19 @@ var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetRequiredService<DataBaseContext>();
-dbContext.Database.Migrate();
+
+// Check if the database exists
+if (!dbContext.Database.CanConnect())
+{
+    // Create the database if it doesn't exist
+    dbContext.Database.EnsureCreated();
+    // Read the SQL script file
+    var scriptFilePath = Path.Combine(AppContext.BaseDirectory, "Scripts", "ContactsControl.sql");
+    var script = File.ReadAllText(scriptFilePath);
+
+    // Execute the script to create the database
+    dbContext.Database.ExecuteSqlRaw(script);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
