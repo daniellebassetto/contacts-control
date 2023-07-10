@@ -11,13 +11,13 @@ namespace ContactsControl.Controllers.Login
         }
 
         [HttpPost]
-        public IActionResult Enter(LoginModel login)
+        public IActionResult Enter(LoginModel loginModel)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
-                    if(login.Login == "adm" && login.Password == "123")
+                    if(loginModel.Login == "adm" && loginModel.Password == "123")
                         return RedirectToAction("Index", "Home");
 
                     TempData["ErrorMessage"] = $"Usuário e/ou senha inválido(s). Tente novamente.";
