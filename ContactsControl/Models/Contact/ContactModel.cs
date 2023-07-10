@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ContactsControl.Models
 {
@@ -7,14 +6,14 @@ namespace ContactsControl.Models
     {
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "Nome não pode ser vazio")]
+        [Required(ErrorMessage = "Informe o nome")]
         public string Name { get; set; }
         
-        [Required(ErrorMessage = "E-mail não pode ser vazio")]
+        [Required(ErrorMessage = "Informe o e-mail")]
         [EmailAddress(ErrorMessage = "E-mail inválido")]
         public string Email { get; set; }
         
-        [Required(ErrorMessage = "Telefone não pode ser vazio")]
+        [Required(ErrorMessage = "Informe o telefone")]
         [Phone(ErrorMessage = "Telefone inválido")]
         public string Phone { get; set; }
     }

@@ -52,7 +52,7 @@ namespace ContactsControl.Repositories
 
             updateUser.Name = User.Name;            
             updateUser.Login = User.Login;
-            updateUser.Profile = User.Profile;
+            updateUser.TypeUser = User.TypeUser;
             updateUser.Email = User.Email;
             updateUser.ChangeDate = DateTime.Now;
 

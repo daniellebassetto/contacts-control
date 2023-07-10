@@ -26,9 +26,9 @@ namespace ContactsControl.Map
             builder.Property(x => x.Email).HasMaxLength(256);
             builder.Property(x => x.Email).ValueGeneratedNever();
 
-            builder.Property(x => x.Profile).HasColumnName("tipo_usuario");
-            builder.Property(x => x.Profile).IsRequired();
-            builder.Property(x => x.Profile).ValueGeneratedNever();
+            builder.Property(x => x.TypeUser).HasColumnName("tipo_usuario");
+            builder.Property(x => x.TypeUser).IsRequired();
+            builder.Property(x => x.TypeUser).ValueGeneratedNever();
 
             builder.Property(x => x.Login).HasColumnName("login");
             builder.Property(x => x.Login).IsRequired();

@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ContactsControl.Models;
 using ContactsControl.Repositories;
+using ContactsControl.Enums;
 
 namespace ContactControl.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IUserRepository _UserRepository;
-        public UserController(IUserRepository UserRepository)
+        private readonly IUserRepository _userRepository;
+        public UserController(IUserRepository userRepository)
         {
-            _UserRepository = UserRepository;
+            _userRepository = userRepository;
         }
 
         public IActionResult Index()
         {
-            List<UserModel> contatos = _UserRepository.GetAll();
+            List<UserModel> contatos = _userRepository.GetAll();
             return View(contatos);
         }
 
@@ -25,13 +26,13 @@ namespace ContactControl.Controllers
 
         public IActionResult Update(int id)
         {
-            UserModel contato = _UserRepository.Get(id);
+            UserModel contato = _userRepository.Get(id);
             return View(contato);
         }
 
         public IActionResult DeleteConfimation(int id)
         {
-            UserModel contato = _UserRepository.Get(id);
+            UserModel contato = _userRepository.Get(id);
             return View(contato);
         }
 
@@ -40,7 +41,7 @@ namespace ContactControl.Controllers
 
             try
             {
-                bool excluded = _UserRepository.Delete(id);
+                bool excluded = _userRepository.Delete(id);
 
                 if (excluded)
                 {
@@ -62,18 +63,18 @@ namespace ContactControl.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(UserModel User)
+        public IActionResult Create(UserModel user)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _UserRepository.Create(User);
+                    _userRepository.Create(user);
                     TempData["SuccessMessage"] = "Usuário cadastrado com sucesso";
                     return RedirectToAction("Index");
                 }
 
-                return View(User);
+                return View(user);
             }
             catch (Exception ex)
             {
@@ -83,18 +84,29 @@ namespace ContactControl.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(UserModel User)
+        public IActionResult Update(UserUpdateModel userUpdate)
         {
             try
             {
+                UserModel user = null;
+
                 if (ModelState.IsValid)
                 {
-                    _UserRepository.Update(User);
+                    user = new UserModel()
+                    { 
+                        Id = userUpdate.Id,
+                        Name = userUpdate.Name,
+                        Login = userUpdate.Login,
+                        TypeUser = userUpdate.TypeUser,
+                        Email = userUpdate.Email
+                    };
+
+                    user = _userRepository.Update(user);
                     TempData["SuccessMessage"] = "Usuário alterado com sucesso";
                     return RedirectToAction("Index");
                 }
 
-                return View(User);
+                return View(user);
             }
             catch (Exception ex)
             {
