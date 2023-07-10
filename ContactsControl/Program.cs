@@ -13,7 +13,7 @@ builder.Configuration.AddJsonFile("appsettings.json");
 // Configure the database context
 #region Configure Interface and Repository
 builder.Services.AddDbContext<DataBaseContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
+    options.UseMySql(builder.Configuration.GetConnectionString("DataBase"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DataBase"))));
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 #endregion
