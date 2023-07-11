@@ -1,4 +1,5 @@
-﻿@model UserModel
+﻿@using ContactsControl.Enums;
+@model UserModel
 
 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Olá, @Model.Name</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -11,11 +12,14 @@
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Usuários</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contatos</a>
         </li>
+        @if(Model.TypeUser == TypeUser.Admin)
+        {          
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Usuários</a>
+            </li>
+        }        
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Exit">Sair</a>
         </li>

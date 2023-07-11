@@ -1,17 +1,14 @@
-﻿using ContactsControl.Models;
+﻿using ContactsControl.Filters;
+using ContactsControl.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ContactsControl.Controllers
 {
+    [LoggedUserPage]
     public class HomeController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

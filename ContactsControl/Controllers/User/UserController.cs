@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ContactsControl.Models;
 using ContactsControl.Repositories;
-using ContactsControl.Enums;
+using ContactsControl.Filters;
 
 namespace ContactControl.Controllers
 {
+    [LoggedUserAdminPage]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
