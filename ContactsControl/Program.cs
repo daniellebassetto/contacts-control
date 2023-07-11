@@ -1,4 +1,5 @@
 using ContactsControl.Data;
+using ContactsControl.Helper;
 using ContactsControl.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,10 +16,19 @@ var connectionString = builder.Configuration.GetConnectionString("DataBase");
 builder.Services.AddDbContext<DataBaseContext>(opts =>
     opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 #region Configure Interface and Repository
+builder.Services.AddScoped<ContactsControl.Helper.ISession, Session>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 #endregion
+
+builder.Services.AddSession(o =>
+{
+    o.Cookie.HttpOnly = true;
+    o.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -53,6 +63,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

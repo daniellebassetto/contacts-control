@@ -9,5 +9,6 @@ namespace ContactsControl.Repositories
         UserModel Create(UserModel User);
         UserModel Update(UserModel User);
         bool Delete(long id);
+        UserModel GetLogin(string login);
     }
 }
