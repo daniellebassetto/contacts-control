@@ -23,6 +23,11 @@ namespace ContactsControl.Controllers
             return View();
         }
 
+        public IActionResult RedefinePassword()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Enter(LoginModel loginModel)
         {
@@ -61,6 +66,37 @@ namespace ContactsControl.Controllers
         {
             _session.RemoveUserSession();
             return RedirectToAction("Index", "Login");
+        }
+
+        [HttpPost]
+        public IActionResult SendLinkToRedefinePassword(RedefinePasswordModel redefinePasswordModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    UserModel user = _userRepository.GetLoginAndEmail(redefinePasswordModel.Login, redefinePasswordModel.Email);
+
+                    if (user != null)
+                    {
+                        string newPassword = user.GenerateNewPassword();
+                        _userRepository.Update(user);
+
+                        TempData["SuccessMessage"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
+
+                        return RedirectToAction("Index", "Login");
+                    }
+
+                    TempData["ErrorMessage"] = $"Não foi possível redefinir sua senha. Verifique os dados informados.";
+                }
+
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

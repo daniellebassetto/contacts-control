@@ -5,7 +5,7 @@ namespace ContactsControl.Helpers.Cryptography
 {
     public static class Cryptography
     {
-        public static string CreateHash(this string value)
+        public static string GenerateHash(this string value)
         {
             var hash = SHA1.Create();
             var encoding = new ASCIIEncoding();

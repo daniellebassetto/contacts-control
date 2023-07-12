@@ -23,12 +23,19 @@ namespace ContactsControl.Models
 
         public bool IsValidPassword(string password)
         {
-            return Password == password.CreateHash(); 
+            return Password == password.GenerateHash(); 
         }
 
         public void SetHashPassword()
         {
-            Password = Password.CreateHash();
+            Password = Password.GenerateHash();
+        }
+
+        public string GenerateNewPassword()
+        {
+            string newPassword = Guid.NewGuid().ToString().Substring(0,8);
+            Password = newPassword.GenerateHash();
+            return newPassword;
         }
     }
 }

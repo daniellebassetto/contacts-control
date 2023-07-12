@@ -49,6 +49,11 @@ namespace ContactsControl.Repositories
             return _dataBaseContext.User.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
         }
 
+        public UserModel GetLoginAndEmail(string login, string email)
+        {
+            return _dataBaseContext.User.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper() && x.Email.ToUpper() == email.ToUpper());
+        }
+
         public UserModel Update(UserModel User)
         {
             UserModel updateUser = Get(User.Id);
