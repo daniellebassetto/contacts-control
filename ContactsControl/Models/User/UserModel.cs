@@ -1,4 +1,5 @@
 ﻿using ContactsControl.Enums;
+using ContactsControl.Helpers.Cryptography;
 using System.ComponentModel.DataAnnotations;
 
 namespace ContactsControl.Models
@@ -22,7 +23,12 @@ namespace ContactsControl.Models
 
         public bool IsValidPassword(string password)
         {
-            return Password == password; 
+            return Password == password.CreateHash(); 
+        }
+
+        public void SetHashPassword()
+        {
+            Password = Password.CreateHash();
         }
     }
 }

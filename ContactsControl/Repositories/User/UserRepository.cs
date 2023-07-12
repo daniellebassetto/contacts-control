@@ -15,6 +15,7 @@ namespace ContactsControl.Repositories
         public UserModel Create(UserModel User)
         {
             User.RegistrationDate = DateTime.Now;
+            User.SetHashPassword();
             _dataBaseContext.User.Add(User);
             _dataBaseContext.SaveChanges();
             return User;
