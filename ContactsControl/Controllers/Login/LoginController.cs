@@ -1,4 +1,5 @@
-﻿using ContactsControl.Models;
+﻿using ContactsControl.Helpers;
+using ContactsControl.Models;
 using ContactsControl.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,12 +8,14 @@ namespace ContactsControl.Controllers
     public class LoginController : Controller
     {
         private readonly IUserRepository _userRepository;
-        private readonly Helper.ISession _session;
+        private readonly Helpers.ISession _session;
+        private readonly IEmail _email;
 
-        public LoginController(IUserRepository userRepository, Helper.ISession session)
+        public LoginController(IUserRepository userRepository, Helpers.ISession session, IEmail email)
         {
             _userRepository = userRepository;
             _session = session;
+            _email = email;
         }
 
         public IActionResult Index()
@@ -43,8 +46,7 @@ namespace ContactsControl.Controllers
                         {
                             _session.CreateUserSession(user);
                             return RedirectToAction("Index", "Home");
-                        }
-                            
+                        }                            
 
                         TempData["ErrorMessage"] = $"Senha incorreta. Tente novamente.";
                         return View("Index");
@@ -79,10 +81,19 @@ namespace ContactsControl.Controllers
 
                     if (user != null)
                     {
-                        string newPassword = user.GenerateNewPassword();
-                        _userRepository.Update(user);
+                        string newPassword = user.GenerateNewPassword();                        
+                        string message = $"Sua nova senha é: {newPassword}";
+                        bool emailSent = _email.Send(user.Email, "Sistema de Contatos - Nova Senha", message);
 
-                        TempData["SuccessMessage"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
+                        if(emailSent)
+                        {
+                            _userRepository.Update(user);
+                            TempData["SuccessMessage"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
+                        }
+                        else
+                        {
+                            TempData["ErrorMessage"] = $"Ocorreu um erro ao enviar o e-mail. Tente novamente.";
+                        }
 
                         return RedirectToAction("Index", "Login");
                     }

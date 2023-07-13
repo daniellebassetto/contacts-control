@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace ContactsControl.Helpers.Cryptography
+namespace ContactsControl.Helpers
 {
     public static class Cryptography
     {

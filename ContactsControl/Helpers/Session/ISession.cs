@@ -1,6 +1,6 @@
 ﻿using ContactsControl.Models;
 
-namespace ContactsControl.Helper
+namespace ContactsControl.Helpers
 {
     public interface ISession
     {

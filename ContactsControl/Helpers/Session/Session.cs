@@ -1,7 +1,7 @@
 ﻿using ContactsControl.Models;
 using Newtonsoft.Json;
 
-namespace ContactsControl.Helper
+namespace ContactsControl.Helpers
 {
     public class Session : ISession
     {

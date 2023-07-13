@@ -1,5 +1,5 @@
 ﻿using ContactsControl.Enums;
-using ContactsControl.Helpers.Cryptography;
+using ContactsControl.Helpers;
 using System.ComponentModel.DataAnnotations;
 
 namespace ContactsControl.Models

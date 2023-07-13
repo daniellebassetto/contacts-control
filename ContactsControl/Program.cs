@@ -1,5 +1,5 @@
 using ContactsControl.Data;
-using ContactsControl.Helper;
+using ContactsControl.Helpers;
 using ContactsControl.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +19,8 @@ builder.Services.AddDbContext<DataBaseContext>(opts =>
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 #region Configure Interface and Repository
-builder.Services.AddScoped<ContactsControl.Helper.ISession, Session>();
+builder.Services.AddScoped<ContactsControl.Helpers.ISession, Session>();
+builder.Services.AddScoped<IEmail, Email>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 #endregion
