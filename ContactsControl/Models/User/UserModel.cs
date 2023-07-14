@@ -20,6 +20,7 @@ namespace ContactsControl.Models
         public string Email { get; set; }       
         public DateTime RegistrationDate { get; set; }
         public DateTime? ChangeDate { get; set; }
+        public virtual List<ContactModel> ListContact { get; set; }
 
         public bool IsValidPassword(string password)
         {
@@ -29,6 +30,11 @@ namespace ContactsControl.Models
         public void SetHashPassword()
         {
             Password = Password.GenerateHash();
+        }
+
+        public void SetNewPassword(string newPassword)
+        {
+            Password = newPassword.GenerateHash();
         }
 
         public string GenerateNewPassword()

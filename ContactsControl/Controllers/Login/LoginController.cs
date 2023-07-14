@@ -71,7 +71,7 @@ namespace ContactsControl.Controllers
         }
 
         [HttpPost]
-        public IActionResult SendLinkToRedefinePassword(RedefinePasswordModel redefinePasswordModel)
+        public IActionResult SendLinkToRedefinePassword(RedefinePasswordLoginModel redefinePasswordModel)
         {
             try
             {

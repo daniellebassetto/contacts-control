@@ -11,6 +11,7 @@ namespace ContactsControl.Map
             builder.ToTable("contato");
 
             builder.HasKey(x => x.Id);
+            builder.HasOne(x => x.User).WithMany(x => x.ListContact).HasForeignKey(x => x.UserId);
 
             builder.Property(x => x.Id).HasColumnName("id");
             builder.Property(x => x.Id).IsRequired();
@@ -30,6 +31,9 @@ namespace ContactsControl.Map
             builder.Property(x => x.Phone).IsRequired();
             builder.Property(x => x.Phone).HasMaxLength(18);
             builder.Property(x => x.Phone).ValueGeneratedNever();
+
+            builder.Property(x => x.UserId).HasColumnName("id_usuario");
+            builder.Property(x => x.UserId).ValueGeneratedNever();
         }
     }
 }

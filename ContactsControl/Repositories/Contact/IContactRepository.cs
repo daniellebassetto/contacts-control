@@ -4,10 +4,10 @@ namespace ContactsControl.Repositories
 {
     public interface IContactRepository
     {
-        List<ContactModel> GetAll();
-        ContactModel Get(long id);
         ContactModel Create(ContactModel contact);
-        ContactModel Update(ContactModel contact);
         bool Delete(long id);
+        ContactModel Get(long id);
+        List<ContactModel> GetAll(long? userId);
+        ContactModel Update(ContactModel contact);
     }
 }

@@ -9,14 +9,16 @@ namespace ContactsControl.Controllers
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository;
-        public ContactController(IContactRepository contactRepository)
+        private readonly Helpers.ISession _session;
+        public ContactController(IContactRepository contactRepository, Helpers.ISession session)
         {
             _contactRepository = contactRepository;
+            _session = session;
         }
 
         public IActionResult Index()
-        {
-            List<ContactModel> contatos = _contactRepository.GetAll();
+        {            
+            List<ContactModel> contatos = _contactRepository.GetAll(_session.GetUserSession().Id);
             return View(contatos);
         }
         
@@ -39,7 +41,6 @@ namespace ContactsControl.Controllers
         
         public IActionResult Delete(int id)
         {
-
             try
             {
                 bool excluded = _contactRepository.Delete(id);
@@ -70,6 +71,7 @@ namespace ContactsControl.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    contact.UserId = _session.GetUserSession().Id;
                     _contactRepository.Create(contact);
                     TempData["SuccessMessage"] = "Contato cadastrado com sucesso";
                     return RedirectToAction("Index");
@@ -91,6 +93,7 @@ namespace ContactsControl.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    contact.UserId = _session.GetUserSession().Id;
                     _contactRepository.Update(contact);
                     TempData["SuccessMessage"] = "Contato alterado com sucesso";
                     return RedirectToAction("Index");

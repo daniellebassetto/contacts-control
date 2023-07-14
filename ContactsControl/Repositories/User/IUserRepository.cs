@@ -4,12 +4,13 @@ namespace ContactsControl.Repositories
 {
     public interface IUserRepository
     {
-        List<UserModel> GetAll();
-        UserModel Get(long id);
         UserModel Create(UserModel User);
-        UserModel Update(UserModel User);
         bool Delete(long id);
+        UserModel Get(long id);
+        List<UserModel> GetAll();
         UserModel GetLogin(string login);
         UserModel GetLoginAndEmail(string login, string email);
+        UserModel RedefinePassword(RedefinePasswordModel redefinePasswordModel);
+        UserModel Update(UserModel User);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ContactsControl.Models
 {
-    public class RedefinePasswordModel
+    public class RedefinePasswordLoginModel
     {
         [Required(ErrorMessage = "Informe o login")]
         public string Login { get; set; }

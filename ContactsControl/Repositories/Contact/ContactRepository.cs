@@ -37,9 +37,9 @@ namespace ContactsControl.Repositories
             return _dataBaseContext.Contact.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<ContactModel> GetAll()
+        public List<ContactModel> GetAll(long? userId)
         {
-            return _dataBaseContext.Contact.ToList();
+            return _dataBaseContext.Contact.Where(x => x.UserId == userId).ToList();
         }
 
         public ContactModel Update(ContactModel contact)

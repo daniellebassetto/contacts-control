@@ -54,6 +54,25 @@ namespace ContactsControl.Repositories
             return _dataBaseContext.User.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper() && x.Email.ToUpper() == email.ToUpper());
         }
 
+        public UserModel RedefinePassword(RedefinePasswordModel redefinePasswordModel)
+        {
+            UserModel userModel = Get(redefinePasswordModel.UserId) ?? throw new Exception("Houve um erro na atualização da senha, usuário não encontrado");
+
+            if (!userModel.IsValidPassword(redefinePasswordModel.CurrentPassword))
+                throw new Exception("Senha atual incorreta");
+
+            if (userModel.IsValidPassword(redefinePasswordModel.NewPassword))
+                throw new Exception("Nova senha deve ser diferente da senha atual");
+
+            userModel.SetNewPassword(redefinePasswordModel.NewPassword);
+            userModel.ChangeDate = DateTime.Now;
+
+            _dataBaseContext.User.Update(userModel);
+            _dataBaseContext.SaveChanges();
+
+            return userModel;
+        }
+
         public UserModel Update(UserModel User)
         {
             UserModel updateUser = Get(User.Id);

@@ -1,0 +1,48 @@
+﻿@using ContactsControl.Enums;
+@model RedefinePasswordModel
+@{
+    ViewData["Title"] = "Redefinir senha do usuário";
+}
+
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Redefinir senha do usuário</h1>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <form asp-controller="RedefinePassword" asp-action="Update" method="post">
+
+        <div class="form-group mb-3">
+            <label for="currentPassword">Senha atual</label> @Html.ValidationMessageFor(x => x.CurrentPassword)
+            <input type="password" asp-for="CurrentPassword" class="form-control" placeholder="Informe a senha atual">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="newPassword">Nova senha</label> @Html.ValidationMessageFor(x => x.NewPassword)
+            <input type="password" asp-for="NewPassword" class="form-control" placeholder="Informe a nova senha">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="confirmNewPassword">Confirmar nova senha</label> @Html.ValidationMessageFor(x => x.ConfirmNewPassword)
+            <input type="password" asp-for="ConfirmNewPassword" class="form-control" placeholder="Confirme   a nova senha">
+        </div>
+
+        <button type="submit" class="btn btn-primary d-block w-100 mb-3">Alterar</button>
+        <a class="btn btn-danger d-block w-100 mb-3" role="button" asp-controller="Home" asp-action="Index">Cancelar</a>
+    </form>
+</body>
