@@ -37,6 +37,7 @@
                     <th scope="col">Login</th>
                     <th scope="col">Tipo de Usuário</th>
                     <th scope="col">E-mail</th>
+                    <th scope="col">Total de Contatos</th>
                     <th scope="col">Data de cadastro</th>
                     <th scope="col">Data de alteração</th>
                     <th scope="col"></th>
@@ -53,6 +54,11 @@
                             <td>@user.Login</td>
                             <td>@(user.TypeUser == TypeUser.Admin ? "Admin" : "Padrão")</td>
                             <td>@user.Email</td>
+                            <td>
+                                <a href="javascript:" user-id="@user.Id" class="btn btn-success btn-sm btn-total-contatos">
+                                    @(user.ListContact != null && user.ListContact.Any() ? user.ListContact.Count() : 0)
+                                </a>
+                            </td>
                             <td>@user.RegistrationDate</td>
                             <td>@(user.ChangeDate != null ? user.ChangeDate.ToString() : "N/A")</td>
                             <td>
@@ -79,5 +85,21 @@
                 }
             </tbody>
         </table>
+
+        <div id="modalContactUser" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Listagem de Contatos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="listContactUser"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>

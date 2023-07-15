@@ -1,6 +1,11 @@
 ﻿$('document').ready(function () {
     getDataTable('#contact-table')
     getDataTable('#user-table')
+
+    $('.btn-total-contatos').click(function () {
+        var userId = $(this).attr('user-id');
+        $('#modalContactUser').modal();
+    })
 });
 
 function getDataTable(id) {

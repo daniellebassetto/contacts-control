@@ -60,8 +60,7 @@ namespace ContactsControl.Controllers
             {
                 TempData["ErrorMessage"] = $"Erro: {ex.Message}";
                 return RedirectToAction("Index");
-            }
-            
+            }            
         }
 
         [HttpPost]

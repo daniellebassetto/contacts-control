@@ -11,7 +11,7 @@ namespace ContactsControl.Map
             builder.ToTable("contato");
 
             builder.HasKey(x => x.Id);
-            builder.HasOne(x => x.User).WithMany(x => x.ListContact).HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.User);
 
             builder.Property(x => x.Id).HasColumnName("id");
             builder.Property(x => x.Id).IsRequired();

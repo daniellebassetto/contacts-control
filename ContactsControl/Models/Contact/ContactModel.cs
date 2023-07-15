@@ -17,6 +17,6 @@ namespace ContactsControl.Models
         [Phone(ErrorMessage = "Telefone inválido")]
         public string Phone { get; set; }
         public long? UserId { get; set; }
-        public UserModel User { get; set; }
+        public UserModel? User { get; set; }
     }
 }

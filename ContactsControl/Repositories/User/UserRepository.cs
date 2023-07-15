@@ -1,5 +1,6 @@
 ﻿using ContactsControl.Data;
 using ContactsControl.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactsControl.Repositories
 {
@@ -41,7 +42,7 @@ namespace ContactsControl.Repositories
 
         public List<UserModel> GetAll()
         {
-            return _dataBaseContext.User.ToList();
+            return _dataBaseContext.User.Include(x => x.ListContact).ToList();
         }
 
         public UserModel GetLogin(string login)
