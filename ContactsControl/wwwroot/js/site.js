@@ -4,7 +4,16 @@
 
     $('.btn-total-contatos').click(function () {
         var userId = $(this).attr('user-id');
-        $('#modalContactUser').modal();
+
+        $.ajax({
+            type: 'GET',
+            url: '/User/GetByUserId/' + userId,
+            success: function (result) {
+                $("#listContactUser").html(result);
+                $('#modalContactUser').modal();
+                $getDataTable('#contact-user-table');
+            }
+        });        
     })
 });
 

@@ -9,9 +9,12 @@ namespace ContactControl.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
-        public UserController(IUserRepository userRepository)
+        private readonly IContactRepository _contactRepository;
+
+        public UserController(IUserRepository userRepository, IContactRepository contactRepository)
         {
             _userRepository = userRepository;
+            _contactRepository = contactRepository;
         }
 
         public IActionResult Index()
@@ -31,7 +34,7 @@ namespace ContactControl.Controllers
             return View(contato);
         }
 
-        public IActionResult DeleteConfimation(int id)
+        public IActionResult DeleteConfirmation(int id)
         {
             UserModel contato = _userRepository.Get(id);
             return View(contato);
@@ -68,6 +71,7 @@ namespace ContactControl.Controllers
         {
             try
             {
+                ModelState.Remove("ListContact");
                 if (ModelState.IsValid)
                 {
                     _userRepository.Create(user);
@@ -114,6 +118,12 @@ namespace ContactControl.Controllers
                 TempData["ErrorMessage"] = $"Erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
+        }
+
+        public IActionResult GetByUserId(int userId)
+        {
+            List<ContactModel> listContact = _contactRepository.GetAll(userId);
+            return PartialView("_ContactUser", listContact);
         }
     }
 }

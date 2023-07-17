@@ -33,7 +33,7 @@ namespace ContactsControl.Controllers
             return View(contato);
         }
 
-        public IActionResult DeleteConfimation(int id)
+        public IActionResult DeleteConfirmation(int id)
         {
             ContactModel contato = _contactRepository.Get(id);
             return View(contato);

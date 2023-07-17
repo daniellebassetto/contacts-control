@@ -6,7 +6,7 @@ namespace ContactsControl.ViewComponents
 {
     public class Menu : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
             string userSession = HttpContext.Session.GetString("loggedUserSession");
 
