@@ -10,7 +10,7 @@
             url: '/User/GetByUserId/' + userId,
             success: function (result) {
                 $("#listContactUser").html(result);
-                $('#modalContactUser').modal();
+                $('#modalContactUser').modal('show');
                 $getDataTable('#contact-user-table');
             }
         });        
