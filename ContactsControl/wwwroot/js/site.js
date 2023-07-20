@@ -1,4 +1,4 @@
-﻿$('document').ready(function () {
+﻿$(document).ready(function () {
     getDataTable('#contact-table')
     getDataTable('#user-table')
 
@@ -7,14 +7,14 @@
 
         $.ajax({
             type: 'GET',
-            url: '/User/GetByUserId/' + userId,
+            url: '/User/GetByUserId?userId=' + userId,
             success: function (result) {
                 $("#listContactUser").html(result);
                 $('#modalContactUser').modal('show');
-                $getDataTable('#contact-user-table');
+                getDataTable('#contact-user-table');
             }
-        });        
-    })
+        });
+    });
 });
 
 function getDataTable(id) {

@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        @if(Model != null && Model.Any())
+        @if (Model != null && Model.Any())
         {
             @foreach (var contato in Model)
             {
@@ -20,6 +20,7 @@
                     <td>@contato.Name</td>
                     <td>@contato.Email</td>
                     <td>@contato.Phone</td>
+                    <td></td>
                 </tr>
             }
         }
@@ -27,8 +28,9 @@
         {
             <tr class="odd">
                 <th></th>
+                <td valign="top" colspan="4">Nenhum contato encontrado</td>
                 <td></td>
-                <td>Nenhum usuário cadastrado</td>
+                <td></td>
                 <td></td>
             </tr>
         }

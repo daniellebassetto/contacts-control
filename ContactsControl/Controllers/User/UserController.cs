@@ -120,7 +120,8 @@ namespace ContactControl.Controllers
             }
         }
 
-        public IActionResult GetByUserId(int userId)
+        [HttpGet]
+        public IActionResult GetByUserId([FromQuery]long userId)
         {
             List<ContactModel> listContact = _contactRepository.GetAll(userId);
             return PartialView("_ContactUser", listContact);
