@@ -1,31 +1,35 @@
-﻿@model ContactModel
-@{
-    ViewData["Title"] = "Criar Contato";
-}
-
-<body>
-    <div class="text-center">
-        <h1 class="display-4">Cadastrar Contato</h1>
-    </div>
-
-    <form asp-controller="Contact" asp-action="Create" method="post">
-        <div class="form-group mb-3">
-            <label for="name">Nome</label> 
-            <input type="text" asp-for="Name" class="form-control" placeholder="Informe o nome">
-            @Html.ValidationMessageFor(x => x.Name)
-        </div>
-        <div class="form-group mb-3">
-            <label for="email">E-mail</label> 
-            <input type="email" asp-for="Email" class="form-control" placeholder="Informe o e-mail">
-            @Html.ValidationMessageFor(x => x.Email)
-        </div>
-        <div class="form-group mb-3">
-            <label for="phone">Telefone</label> 
-            <input type="tel" asp-for="Phone" class="form-control" placeholder="Informe o telefone">
-            @Html.ValidationMessageFor(x => x.Phone)
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        @model ContactModel
+        @{
+            ViewData["Title"] = "Criar Contato";
+        }
+    </head>
+    <body>
+        <div class="text-center">
+            <h1 class="display-4">Cadastrar Contato</h1>
         </div>
 
-        <button type="submit" class="btn btn-primary d-block w-100 mb-3">Adicionar</button>
-        <a class="btn btn-danger d-block w-100 mb-3" role="button" asp-controller="Contact" asp-action="Index">Cancelar</a>
-    </form>
-</body>
+        <form asp-controller="Contact" asp-action="Create" method="post">
+            <div class="form-group mb-3">
+                <label for="name">Nome</label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="Informe o nome">
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+            <div class="form-group mb-3">
+                <label for="email">E-mail</label>
+                <input type="email" asp-for="Email" class="form-control" placeholder="Informe o e-mail">
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div class="form-group mb-3">
+                <label for="phone">Telefone</label>
+                <input type="tel" asp-for="Phone" class="form-control" placeholder="Informe o telefone">
+                @Html.ValidationMessageFor(x => x.Phone)
+            </div>
+
+            <button type="submit" class="btn btn-primary d-block w-100 mb-3">Adicionar</button>
+            <a class="btn btn-danger d-block w-100 mb-3" role="button" asp-controller="Contact" asp-action="Index">Cancelar</a>
+        </form>
+    </body>
+</html>

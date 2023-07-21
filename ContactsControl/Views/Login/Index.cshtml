@@ -1,41 +1,47 @@
-﻿@model LoginModel
-@{
-    Layout = "_LayoutLoggedOut";
-    ViewData["Title"] = "Login";
-}
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        @model LoginModel
+        @{
+            Layout = "_LayoutLoggedOut";
+            ViewData["Title"] = "Login";
+        }
+    </head>
+    <body>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["SuccessMessage"]
+            </div>
+        }
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
-        @TempData["SuccessMessage"]
-    </div>
-}
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+                @TempData["ErrorMessage"]
+            </div>
+        }
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
-        @TempData["ErrorMessage"]
-    </div>
-}
+        <form asp-controller="Login" asp-action="Enter" method="post">
+            <div class="mb-3">
+                <label for="login" class="form-label">Login</label>
+                <input type="text" asp-for="Login" class="form-control" id="login">
+                @Html.ValidationMessageFor(x => x.Login)
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <input type="password" asp-for="Password" class="form-control" id="senha">
+                @Html.ValidationMessageFor(x => x.Password)
+            </div>
 
-<form asp-controller="Login" asp-action="Enter" method="post">
-    <div class="mb-3">
-        <label for="login" class="form-label">Login</label>
-        <input type="text" asp-for="Login" class="form-control" id="login">
-        @Html.ValidationMessageFor(x => x.Login)
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Senha</label>
-        <input type="password" asp-for="Password" class="form-control" id="senha">
-        @Html.ValidationMessageFor(x => x.Password)
-    </div>
+            <p class="mb-4 text-sm mx-auto">
+                Esqueceu sua senha?
+                <a asp-action="RedefinePassword" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir senha</a>
+            </p>
 
-    <p class="mb-4 text-sm mx-auto">
-        Esqueceu sua senha?
-        <a asp-action="RedefinePassword" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir senha</a>
-    </p>
-
-    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-</form>
+            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+        </form>
+    </body>
+</html>
