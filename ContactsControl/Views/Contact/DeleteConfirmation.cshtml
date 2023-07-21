@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
+<html>
+    <head>
+        @model ContactModel
+        @{
+            ViewData["Title"] = "Confirmação excluir contato";
+        }
+    </head>
+    <body>
+        <div class="text-center">
+            <h3>Realmente deseja excluir o contato (@Model.Name)?</h3>
 
-
-@model ContactModel
-@{
-    ViewData["Title"] = "Confirmação excluir contato";
-}
-
-<body>
-    <div class="text-center">
-        <h3>Realmente deseja excluir o contato (@Model.Name)?</h3>
-
-        <a class="btn btn-primary d-block w-100 mb-3" asp-controller="Contact" asp-action="Delete" asp-route-id="@Model.Id">Confirmar</a>
-        <a class="btn btn-danger d-block w-100 mb-3" asp-controller="Contact" asp-action="Index">Cancelar</a>
-    </div>
-</body>
+            <a class="btn btn-primary d-block w-100 mb-3" asp-controller="Contact" asp-action="Delete" asp-route-id="@Model.Id">Confirmar</a>
+            <a class="btn btn-danger d-block w-100 mb-3" asp-controller="Contact" asp-action="Index">Cancelar</a>
+        </div>
+    </body>
+</html>
