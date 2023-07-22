@@ -1,38 +1,44 @@
-﻿@model List<ContactModel>
-
-<table class="table" id="contact-user-table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Celular</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            @foreach (var contato in Model)
-            {
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        @model List<ContactModel>
+    </head>
+    <body>
+        <table class="table" id="contact-user-table">
+            <thead>
                 <tr>
-                    <th scope="row">@contato.Id</th>
-                    <td>@contato.Name</td>
-                    <td>@contato.Email</td>
-                    <td>@contato.Phone</td>
-                    <td></td>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col"></th>
                 </tr>
-            }
-        }
-        else
-        {
-            <tr class="odd">
-                <th></th>
-                <td valign="top" colspan="4">Nenhum contato encontrado</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var contato in Model)
+                    {
+                        <tr>
+                            <th scope="row">@contato.Id</th>
+                            <td>@contato.Name</td>
+                            <td>@contato.Email</td>
+                            <td>@contato.Phone</td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="odd">
+                        <th></th>
+                        <td valign="top" colspan="4">Nenhum contato encontrado</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+</html>

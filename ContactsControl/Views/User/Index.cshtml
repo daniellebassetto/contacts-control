@@ -1,105 +1,109 @@
-﻿@using ContactsControl.Enums;
-@model List<UserModel>
-@{
-    ViewData["Title"] = "Listagem de Usuários";
-}
-
-<body>
-    <div class="text-center">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-1">
-            <a class="btn btn-primary" role="button" asp-controller="User" asp-action="Create">Adicionar novo usuário</a>
-        </div>
-
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
-                @TempData["SuccessMessage"]
-            </div>
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        @using ContactsControl.Enums;
+        @model List<UserModel>
+        @{
+            ViewData["Title"] = "Listagem de Usuários";
         }
-
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger" role="alert">
-                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-                @TempData["ErrorMessage"]
+    </head>
+    <body>
+        <div class="text-center">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-1">
+                <a class="btn btn-primary" role="button" asp-controller="User" asp-action="Create">Adicionar novo usuário</a>
             </div>
-        }
 
-        <br />
-        <h1 class="display-4">Listagem de Usuários</h1>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+                    @TempData["SuccessMessage"]
+                </div>
+            }
 
-        <table class="table" id="user-table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Login</th>
-                    <th scope="col">Tipo de Usuário</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Total de Contatos</th>
-                    <th scope="col">Data de cadastro</th>
-                    <th scope="col">Data de alteração</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Any())
-                {
-                    @foreach (UserModel user in Model)
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <br />
+            <h1 class="display-4">Listagem de Usuários</h1>
+
+            <table class="table" id="user-table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Tipo de Usuário</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Total de Contatos</th>
+                        <th scope="col">Data de cadastro</th>
+                        <th scope="col">Data de alteração</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
                     {
-                        <tr>
-                            <th scope="row">@user.Id</th>
-                            <td>@user.Name</td>
-                            <td>@user.Login</td>
-                            <td>@(user.TypeUser == TypeUser.Admin ? "Admin" : "Padrão")</td>
-                            <td>@user.Email</td>
-                            <td> 
-                                <a href="javascript:" user-id="@user.Id" class="btn btn-success btn-sm btn-total-contatos">
-                                    @(user.ListContact != null && user.ListContact.Any() ? user.ListContact.Count() : 0)
-                                </a>
-                            </td>
-                            <td>@user.RegistrationDate</td>
-                            <td>@(user.ChangeDate != null ? user.ChangeDate.ToString() : "N/A")</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a role="button" class="btn btn-primary" asp-route-id="@user.Id" asp-controller="User" asp-action="Update">Editar</a>
-                                    <a role="button" class="btn btn-danger" asp-route-id="@user.Id" asp-controller="User" asp-action="DeleteConfirmation">Excluir</a>
-                                </div>
-                            </td>
+                        @foreach (UserModel user in Model)
+                        {
+                            <tr>
+                                <th scope="row">@user.Id</th>
+                                <td>@user.Name</td>
+                                <td>@user.Login</td>
+                                <td>@(user.TypeUser == TypeUser.Admin ? "Admin" : "Padrão")</td>
+                                <td>@user.Email</td>
+                                <td>
+                                    <a href="javascript:" user-id="@user.Id" class="btn btn-success btn-sm btn-total-contatos">
+                                        @(user.ListContact != null && user.ListContact.Any() ? user.ListContact.Count() : 0)
+                                    </a>
+                                </td>
+                                <td>@user.RegistrationDate</td>
+                                <td>@(user.ChangeDate != null ? user.ChangeDate.ToString() : "N/A")</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a role="button" class="btn btn-primary" asp-route-id="@user.Id" asp-controller="User" asp-action="Update">Editar</a>
+                                        <a role="button" class="btn btn-danger" asp-route-id="@user.Id" asp-controller="User" asp-action="DeleteConfirmation">Excluir</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr class="odd">
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Nenhum usuário cadastrado</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     }
-                }
-                else
-                {
-                    <tr class="odd">
-                        <th></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Nenhum usuário cadastrado</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-        <div id="modalContactUser" class="modal" tabindex="-1">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Listagem de Contatos</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="listContactUser"></div>
+            <div id="modalContactUser" class="modal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Listagem de Contatos</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="listContactUser"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
+</html>
