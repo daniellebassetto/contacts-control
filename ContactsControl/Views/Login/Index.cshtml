@@ -24,24 +24,30 @@
             </div>
         }
 
-        <form asp-controller="Login" asp-action="Enter" method="post">
-            <div class="mb-3">
-                <label for="login" class="form-label">Login</label>
-                <input type="text" asp-for="Login" class="form-control" id="login">
-                @Html.ValidationMessageFor(x => x.Login)
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Senha</label>
-                <input type="password" asp-for="Password" class="form-control" id="senha">
-                @Html.ValidationMessageFor(x => x.Password)
-            </div>
+        <div class="container">
+            <div class="justify-content-left">
+                <div class="col-md-5 m-3 bg-info rounded p-4">
+                    <form asp-controller="Login" asp-action="Enter" method="post">
+                        <div class="mb-3">
+                            <label for="login" class="form-label">Login</label>
+                            <input type="text" asp-for="Login" class="form-control" id="login">
+                            @Html.ValidationMessageFor(x => x.Login)
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" asp-for="Password" class="form-control" id="senha">
+                            @Html.ValidationMessageFor(x => x.Password)
+                        </div>
 
-            <p class="mb-4 text-sm mx-auto">
-                Esqueceu sua senha?
-                <a asp-action="RedefinePassword" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir senha</a>
-            </p>
+                        <p class="mb-4 text-sm mx-auto">
+                            Esqueceu sua senha?
+                            <a asp-action="RedefinePassword" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir senha</a>
+                        </p>
 
-            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-        </form>
+                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
