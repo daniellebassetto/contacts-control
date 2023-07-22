@@ -12,7 +12,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-white navbar-light border-bottom box-shadow mb-3">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #051933;">
                 <div class="container-fluid">
                     @await Component.InvokeAsync("Menu")
                 </div>
@@ -20,15 +20,16 @@
         </header>
         <div class="container">
             <main role="main" class="pb-3">
-                @RenderBody()
+                    @RenderBody()
             </main>
         </div>
 
-        <footer class="border-top footer text-muted">
+        <footer class="border-top footer text-muted" style="background-color: #051933;">
             <div class="container">
                 &copy; 2023 - ContactsControl
             </div>
         </footer>
+
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

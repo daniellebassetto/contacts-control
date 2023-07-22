@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
     <head>
+        @model int
         @{
             ViewData["Title"] = "Página Inicial";
         }
@@ -9,6 +10,7 @@
         <div class="text-center">
             <h1 class="display-4">Bem-vindo(a)</h1>
             <p>Sistema de controle de contatos</p>
+            <p>Contatos cadastrados: @Model</p>
         </div>
     </body>
 </html>

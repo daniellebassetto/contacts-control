@@ -51,3 +51,17 @@ function getDataTable(id) {
 $('.close-alert').click(function () {
     $('.alert').hide('hide');
 });
+
+$(document).ready(function () {
+    $("#showHidePassword").on('click', function () {
+        var passwordField = $("#password");
+        var passwordFieldType = passwordField.attr('type');
+        if (passwordFieldType === 'password') {
+            passwordField.attr('type', 'text');
+            $("#showHidePassword i").removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            passwordField.attr('type', 'password');
+            $("#showHidePassword i").removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+    });
+});
