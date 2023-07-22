@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        @model LoginModel
-        @{
-            Layout = "_LayoutLoggedOut";
-            ViewData["Title"] = "Login";
-        }
-    </head>
+<head>
+    @model LoginModel
+    @{
+        Layout = "_LayoutLoggedOut";
+        ViewData["Title"] = "Login";
+    }
+</head>
     <body>
         @if (TempData["SuccessMessage"] != null)
         {
@@ -24,30 +24,33 @@
             </div>
         }
 
-        <div class="container">
-            <div class="justify-content-left">
-                <div class="col-md-5 m-3 bg-info rounded p-4 h">
-                    <form asp-controller="Login" asp-action="Enter" method="post">
-                        <div class="mb-3">
-                            <label for="login" class="form-label">Login</label>
-                            <input type="text" asp-for="Login" class="form-control" id="login">
-                            @Html.ValidationMessageFor(x => x.Login)
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Senha</label>
-                            <input type="password" asp-for="Password" class="form-control" id="senha">
-                            @Html.ValidationMessageFor(x => x.Password)
-                        </div>
+        <section class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #FFF3E4;">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="background-color: #EED6C4; border-radius: 1rem;">
+                    <div class="card-body p-5">
+                        <h2 class="mb-5 text-center" style="color: #6B4F4F;">ContactsControl</h2>
+                        <form asp-controller="Login" asp-action="Enter" method="post">
+                            <div class="form-outline mb-4">
+                                <label for="login" class="form-label" style="color: #6B4F4F; font-size:large;">Login</label>
+                                <input type="text" asp-for="Login" class="form-control" id="login" placeholder="Informe o login">
+                                @Html.ValidationMessageFor(x => x.Login)
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="password" class="form-label" style="color: #6B4F4F; font-size:large;">Senha</label>
+                                <input type="password" asp-for="Password" class="form-control" id="senha" placeholder="Informe a senha">
+                                @Html.ValidationMessageFor(x => x.Password)
+                            </div>
 
-                        <p class="mb-4 text-sm mx-auto">
-                            Esqueceu sua senha?
-                            <a asp-action="RedefinePassword" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir senha</a>
-                        </p>
+                            <p class="mb-4 text-sm mx-auto">
+                                Esqueceu sua senha?
+                                <a asp-action="RedefinePassword" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir senha</a>
+                            </p>
 
-                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                    </form>
+                            <button type="submit" class="btn btn-lg btn-block w-100" style="background: #6B4F4F">Login</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </body>
 </html>
