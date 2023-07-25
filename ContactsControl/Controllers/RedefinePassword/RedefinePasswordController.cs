@@ -2,7 +2,7 @@
 using ContactsControl.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ContactsControl.Controllers.RedefinePassword
+namespace ContactsControl.Controllers
 {
     public class RedefinePasswordController : Controller
     {
