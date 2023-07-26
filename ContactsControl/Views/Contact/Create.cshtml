@@ -24,7 +24,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="phone">Telefone</label>
-                <input type="tel" asp-for="Phone" class="form-control" placeholder="Informe o telefone">
+                <input type="tel" asp-for="Phone" class="form-control" placeholder="Informe o telefone" oninput="formatarTelefone(this)">
                 @Html.ValidationMessageFor(x => x.Phone)
             </div>
 

@@ -8,26 +8,27 @@
         }
     </head>
     <body>
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
-                @TempData["SuccessMessage"]
-            </div>
-        }
-
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger" role="alert">
-                <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
-                @TempData["ErrorMessage"]
-            </div>
-        }
-
         <section class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #051933;">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card shadow-2-strong" style="background-color: rgba(9,51,102,.4); border-color: #167bf7; border-radius: 1rem;">
                     <div class="card-body p-5">
+
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+                                @TempData["ErrorMessage"]
+                            </div>
+                        }
+
                         <h1 class="mb-5 text-center" style="color: #2BFDBE; font-weight: 800;">ContactsControl</h1>
                         <form asp-controller="Login" asp-action="Enter" method="post">
                             <div class="form-outline mb-4">

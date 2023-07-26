@@ -29,7 +29,7 @@ namespace ContactsControl.Map
 
             builder.Property(x => x.Phone).HasColumnName("telefone");
             builder.Property(x => x.Phone).IsRequired();
-            builder.Property(x => x.Phone).HasMaxLength(18);
+            builder.Property(x => x.Phone).HasMaxLength(15);
             builder.Property(x => x.Phone).ValueGeneratedNever();
 
             builder.Property(x => x.UserId).HasColumnName("id_usuario");
